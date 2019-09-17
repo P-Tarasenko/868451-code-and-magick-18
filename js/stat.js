@@ -47,8 +47,12 @@ window.renderStatistics = function (ctx, names, times) {
     var TOTAL_BAR_HIGHT = (BAR_HEIGHT * times[i]) / maxTime;
     var randomColor = Math.round(Math.random() * 100) + '%';
 
-    ctx.fillStyle = 'red';
-    ctx.fillStyle = 'hsl(240, 91%, ' + randomColor + ')';
+    if (names[i] === 'Вы') {
+      ctx.fillStyle = 'red';
+    } else {
+      ctx.fillStyle = 'hsl(240, 91%, ' + randomColor + ')';
+    }
+
     ctx.fillRect(CLOUD_X + GAP + FONT_GAP + SPACE * i, CLOUD_Y + BAR_GAP * 1.6 + (BAR_HEIGHT - TOTAL_BAR_HIGHT), BAR_WIDTH, TOTAL_BAR_HIGHT);
 
     ctx.fillStyle = 'black';
