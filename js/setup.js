@@ -98,13 +98,19 @@ document.addEventListener('keydown', function (evt) {
 });
 
 wizardCoat.addEventListener('click', function () {
-  wizardCoat.style.fill = changeColor(COAT_COLORS);
+  var color = changeColor(COAT_COLORS);
+  wizardCoat.style.fill = color;
+  setupWizard.querySelector('input[name=coat-color]').value = color;
 });
 
 wizardEyes.addEventListener('click', function () {
-  wizardEyes.style.fill = changeColor(EYES_COLORS);
+  var color = changeColor(EYES_COLORS);
+  wizardEyes.style.fill = color;
+  setupWizard.querySelector('input[name=eyes-color]').value = color;
 });
 
 wizardFireball.addEventListener('click', function () {
-  wizardFireball.style.background = changeColor(FIREBALL_COLORS);
+  var color = changeColor(FIREBALL_COLORS);
+  wizardFireball.style.backgroundColor = color;
+  wizardFireball.querySelector('input').value = color;
 });
