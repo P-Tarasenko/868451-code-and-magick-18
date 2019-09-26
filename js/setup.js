@@ -1,5 +1,7 @@
 'use strict';
 
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
 var COUNT = 4;
 var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -9,6 +11,26 @@ var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 var similarListElement = userDialog.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+var setupWizard = document.querySelector('.setup');
+var openSetupWizard = document.querySelector('.setup-open');
+var closeSetupWizard = document.querySelector('.setup-close');
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  setupWizard.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  setupWizard.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
 var addWizards = function (arr) {
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < arr.length; i++) {
@@ -40,3 +62,29 @@ var renderWizard = function (wizard) {
 };
 addWizards(wizards);
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+openSetupWizard.addEventListener('click', function () {
+  openPopup();
+});
+
+openSetupWizard.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+closeSetupWizard.addEventListener('click', function () {
+  closePopup();
+});
+
+closeSetupWizard.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+document.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+});
