@@ -93,7 +93,7 @@ closeSetupWizard.addEventListener('keydown', function (evt) {
 });
 
 document.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ESC_KEYCODE && userName != document.activeElement) {
+  if (evt.keyCode === ESC_KEYCODE && userName !== document.activeElement) {
     closePopup();
   }
 });
