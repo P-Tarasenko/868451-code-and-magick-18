@@ -18,6 +18,7 @@ var closeSetupWizard = document.querySelector('.setup-close');
 var wizardCoat = setupWizard.querySelector('.wizard-coat');
 var wizardEyes = setupWizard.querySelector('.wizard-eyes');
 var wizardFireball = setupWizard.querySelector('.setup-fireball-wrap');
+var userName = setupWizard.querySelector('.setup-user-name');
 
 var changeColor = function (arr) {
   return arr[Math.round(Math.random() * (arr.length - 1))];
@@ -92,7 +93,7 @@ closeSetupWizard.addEventListener('keydown', function (evt) {
 });
 
 document.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ESC_KEYCODE) {
+  if (evt.keyCode === ESC_KEYCODE && userName != document.activeElement) {
     closePopup();
   }
 });
