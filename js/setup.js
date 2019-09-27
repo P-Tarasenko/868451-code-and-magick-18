@@ -69,9 +69,6 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
-addWizards(wizards);
-userDialog.querySelector('.setup-similar').classList.remove('hidden');
-
 openSetupWizard.addEventListener('click', function () {
   openPopup();
 });
@@ -92,8 +89,6 @@ closeSetupWizard.addEventListener('keydown', function (evt) {
   }
 });
 
-document.addEventListener('keydown', onPopupEscPress);
-
 wizardCoat.addEventListener('click', function () {
   var color = getRandomItem(COAT_COLORS);
   wizardCoat.style.fill = color;
@@ -111,3 +106,6 @@ wizardFireball.addEventListener('click', function () {
   wizardFireball.style.backgroundColor = color;
   wizardFireball.querySelector('input[name=fireball-color]').value = color;
 });
+
+addWizards(wizards);
+userDialog.querySelector('.setup-similar').classList.remove('hidden');
