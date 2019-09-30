@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+
   var getRandomItem = function (arr) {
     return arr[Math.round(Math.random() * (arr.length - 1))];
   };
