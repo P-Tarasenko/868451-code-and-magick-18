@@ -1,41 +1,41 @@
 'use strict';
 
 (function () {
-  var userName = window.wizard.setupWizard.querySelector('.setup-user-name');
-  var openSetupWizard = document.querySelector('.setup-open');
-  var closeSetupWizard = document.querySelector('.setup-close');
+  var userNameElement = window.wizard.setupWizardElement.querySelector('.setup-user-name');
+  var openSetupWizardElement = document.querySelector('.setup-open');
+  var closeSetupWizardElement = document.querySelector('.setup-close');
 
   var onPopupEscPress = function (evt) {
-    if (evt.keyCode === window.util.ESC_KEYCODE && userName !== document.activeElement) {
+    if (evt.keyCode === window.util.ESC_KEYCODE && userNameElement !== document.activeElement) {
       closePopup();
     }
   };
 
   var openPopup = function () {
-    window.wizard.setupWizard.classList.remove('hidden');
+    window.wizard.setupWizardElement.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
   };
 
   var closePopup = function () {
-    window.wizard.setupWizard.classList.add('hidden');
+    window.wizard.setupWizardElement.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
-  openSetupWizard.addEventListener('click', function () {
+  openSetupWizardElement.addEventListener('click', function () {
     openPopup();
   });
 
-  openSetupWizard.addEventListener('keydown', function (evt) {
+  openSetupWizardElement.addEventListener('keydown', function (evt) {
     if (evt.keyCode === window.util.ENTER_KEYCODE) {
       openPopup();
     }
   });
 
-  closeSetupWizard.addEventListener('click', function () {
+  closeSetupWizardElement.addEventListener('click', function () {
     closePopup();
   });
 
-  closeSetupWizard.addEventListener('keydown', function (evt) {
+  closeSetupWizardElement.addEventListener('keydown', function (evt) {
     if (evt.keyCode === window.util.ENTER_KEYCODE) {
       closePopup();
     }
