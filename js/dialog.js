@@ -7,6 +7,12 @@
   var closeSetupWizardElement = document.querySelector('.setup-close');
   var setupDialogElement = document.querySelector('.setup');
   var dialogHandler = setupDialogElement.querySelector('.upload');
+  var coordinateForRestore;
+
+  var restoreCoordinate = function () {
+    setupDialogElement.style.top = coordinateForRestore.y + 'px';
+    setupDialogElement.style.left = (coordinateForRestore.x + coordinateForRestore.width / 2) + 'px';
+  };
 
   var onPopupEscPress = function (evt) {
     if (evt.keyCode === window.util.ESC_KEYCODE && userNameElement !== document.activeElement) {
@@ -17,10 +23,12 @@
   var openPopup = function () {
     window.wizard.setupWizardElement.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
+    coordinateForRestore = setupDialogElement.getBoundingClientRect();
   };
 
   var closePopup = function () {
     window.wizard.setupWizardElement.classList.add('hidden');
+    restoreCoordinate();
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
