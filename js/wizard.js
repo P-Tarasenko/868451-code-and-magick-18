@@ -7,10 +7,15 @@
   var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
   var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
   var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+  var wizardParts = {
+    coat: 'input[name=coat-color]',
+    eyes: 'input[name=eyes-color]',
+    fireball: '[name=fireball-color]'
+  };
   var userDialogElement = document.querySelector('.setup');
   var similarListElement = userDialogElement.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-  var setupWizardElement = document.querySelector('.setup');
+  var setupWizardElement = document.querySelector('.setup'); // Возможно нужно вынести в модуль util и задействовать в colorize в поиске inputData
   var wizardCoatElement = setupWizardElement.querySelector('.wizard-coat');
   var wizardEyesElement = setupWizardElement.querySelector('.wizard-eyes');
   var wizardFireballElement = setupWizardElement.querySelector('.setup-fireball-wrap');
@@ -49,23 +54,11 @@
     return wizardElement;
   };
 
-  wizardCoatElement.addEventListener('click', function () {
-    var color = getRandomItem(COAT_COLORS);
-    wizardCoatElement.style.fill = color;
-    setupWizardElement.querySelector('input[name=coat-color]').value = color;
-  });
+  window.colorize(wizardCoatElement, COAT_COLORS, wizardParts.coat);
 
-  wizardEyesElement.addEventListener('click', function () {
-    var color = getRandomItem(EYES_COLORS);
-    wizardEyesElement.style.fill = color;
-    setupWizardElement.querySelector('input[name=eyes-color]').value = color;
-  });
+  window.colorize(wizardEyesElement, EYES_COLORS, wizardParts.eyes);
 
-  wizardFireballElement.addEventListener('click', function () {
-    var color = getRandomItem(FIREBALL_COLORS);
-    wizardFireballElement.style.backgroundColor = color;
-    wizardFireballElement.querySelector('input[name=fireball-color]').value = color;
-  });
+  window.colorize(wizardFireballElement, FIREBALL_COLORS, wizardParts.fireball);
 
   addWizards(wizards);
   userDialogElement.querySelector('.setup-similar').classList.remove('hidden');
