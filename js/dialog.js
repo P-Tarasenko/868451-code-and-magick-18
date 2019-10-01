@@ -52,12 +52,12 @@
     }
   });
 
-  dialogHandler.addEventListener('mousedown', function (evt) {
-    evt.preventDefault();
+  dialogHandler.addEventListener('mousedown', function (mouseDownEvt) {
+    mouseDownEvt.preventDefault();
 
     var startCoords = {
-      x: evt.clientX,
-      y: evt.clientY
+      x: mouseDownEvt.clientX,
+      y: mouseDownEvt.clientY
     };
 
     var dragged = false;
