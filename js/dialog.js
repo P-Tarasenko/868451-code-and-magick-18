@@ -2,16 +2,30 @@
 
 (function () {
 
-  var userNameElement = window.wizard.setupWizardElement.querySelector('.setup-user-name');
+  var setupWizardElement = document.querySelector('.setup');
+  var userNameElement = setupWizardElement.querySelector('.setup-user-name');
   var openSetupWizardElement = document.querySelector('.setup-open');
   var closeSetupWizardElement = document.querySelector('.setup-close');
   var setupDialogElement = document.querySelector('.setup');
   var dialogHandler = setupDialogElement.querySelector('.upload');
+  var userDialogElement = document.querySelector('.setup');
   var coordinateForRestore;
+
+  var activateWizards = function () {
+    userDialogElement.querySelector('.setup-similar').classList.remove('hidden');
+  };
 
   var restoreCoordinate = function () {
     setupDialogElement.style.top = coordinateForRestore.y + 'px';
     setupDialogElement.style.left = (coordinateForRestore.x + coordinateForRestore.width / 2) + 'px';
+  };
+
+  var activatePopup = function () {
+    setupWizardElement.classList.remove('hidden');
+  };
+
+  var deactivatePopup = function () {
+    setupWizardElement.classList.add('hidden');
   };
 
   var onPopupEscPress = function (evt) {
@@ -21,13 +35,13 @@
   };
 
   var openPopup = function () {
-    window.wizard.setupWizardElement.classList.remove('hidden');
+    activatePopup();
     document.addEventListener('keydown', onPopupEscPress);
     coordinateForRestore = setupDialogElement.getBoundingClientRect();
   };
 
   var closePopup = function () {
-    window.wizard.setupWizardElement.classList.add('hidden');
+    deactivatePopup();
     restoreCoordinate();
     document.removeEventListener('keydown', onPopupEscPress);
   };
@@ -100,4 +114,9 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+  window.dialog = {
+    activateWizards: activateWizards
+  };
+
 })();

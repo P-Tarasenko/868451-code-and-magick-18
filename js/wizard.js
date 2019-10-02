@@ -16,7 +16,7 @@
   var userDialogElement = document.querySelector('.setup');
   var similarListElement = userDialogElement.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-  var setupWizardElement = document.querySelector('.setup'); // Возможно нужно вынести в модуль util и задействовать в colorize в поиске inputData
+  var setupWizardElement = document.querySelector('.setup');
   var wizardCoatElement = setupWizardElement.querySelector('.wizard-coat');
   var wizardEyesElement = setupWizardElement.querySelector('.wizard-eyes');
   var wizardFireballElement = setupWizardElement.querySelector('.setup-fireball-wrap');
@@ -62,9 +62,6 @@
   window.colorize(wizardFireballElement, FIREBALL_COLORS, wizardParts.fireball);
 
   addWizards(wizards);
-  userDialogElement.querySelector('.setup-similar').classList.remove('hidden');
+  window.dialog.activateWizards();
 
-  window.wizard = {
-    setupWizardElement: setupWizardElement
-  };
 })();
