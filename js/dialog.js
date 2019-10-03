@@ -2,17 +2,15 @@
 
 (function () {
 
-  var setupWizardElement = document.querySelector('.setup');
-  var userNameElement = setupWizardElement.querySelector('.setup-user-name');
-  var openSetupWizardElement = document.querySelector('.setup-open');
-  var closeSetupWizardElement = document.querySelector('.setup-close');
   var setupDialogElement = document.querySelector('.setup');
+  var userNameElement = setupDialogElement.querySelector('.setup-user-name');
+  var openSetupDialogElement = document.querySelector('.setup-open');
+  var closeSetupDialogElement = document.querySelector('.setup-close');
   var dialogHandler = setupDialogElement.querySelector('.upload');
-  var userDialogElement = document.querySelector('.setup');
   var coordinateForRestore;
 
   var activateWizards = function () {
-    userDialogElement.querySelector('.setup-similar').classList.remove('hidden');
+    setupDialogElement.querySelector('.setup-similar').classList.remove('hidden');
   };
 
   var restoreCoordinate = function () {
@@ -27,32 +25,32 @@
   };
 
   var openPopup = function () {
-    setupWizardElement.classList.remove('hidden');
+    setupDialogElement.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
     coordinateForRestore = setupDialogElement.getBoundingClientRect();
   };
 
   var closePopup = function () {
-    setupWizardElement.classList.add('hidden');
+    setupDialogElement.classList.add('hidden');
     restoreCoordinate();
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
-  openSetupWizardElement.addEventListener('click', function () {
+  openSetupDialogElement.addEventListener('click', function () {
     openPopup();
   });
 
-  openSetupWizardElement.addEventListener('keydown', function (evt) {
+  openSetupDialogElement.addEventListener('keydown', function (evt) {
     if (evt.keyCode === window.util.ENTER_KEYCODE) {
       openPopup();
     }
   });
 
-  closeSetupWizardElement.addEventListener('click', function () {
+  closeSetupDialogElement.addEventListener('click', function () {
     closePopup();
   });
 
-  closeSetupWizardElement.addEventListener('keydown', function (evt) {
+  closeSetupDialogElement.addEventListener('keydown', function (evt) {
     if (evt.keyCode === window.util.ENTER_KEYCODE) {
       closePopup();
     }
