@@ -20,14 +20,6 @@
     setupDialogElement.style.left = (coordinateForRestore.x + coordinateForRestore.width / 2) + 'px';
   };
 
-  var activatePopup = function () {
-    setupWizardElement.classList.remove('hidden');
-  };
-
-  var deactivatePopup = function () {
-    setupWizardElement.classList.add('hidden');
-  };
-
   var onPopupEscPress = function (evt) {
     if (evt.keyCode === window.util.ESC_KEYCODE && userNameElement !== document.activeElement) {
       closePopup();
@@ -35,13 +27,13 @@
   };
 
   var openPopup = function () {
-    activatePopup();
+    setupWizardElement.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
     coordinateForRestore = setupDialogElement.getBoundingClientRect();
   };
 
   var closePopup = function () {
-    deactivatePopup();
+    setupWizardElement.classList.add('hidden');
     restoreCoordinate();
     document.removeEventListener('keydown', onPopupEscPress);
   };
