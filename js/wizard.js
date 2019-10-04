@@ -18,12 +18,7 @@
   var wizardEyesElement = setupWizardElement.querySelector('.wizard-eyes');
   var wizardFireballElement = setupWizardElement.querySelector('.setup-fireball-wrap');
 
-  var onError = function (message) {
-    console.error(message);
-  };
-
   var onLoad = function (data) {
-    console.log(data);
     addWizards(data);
   };
 
@@ -51,6 +46,6 @@
 
   window.dialog.activateWizards();
 
-  window.backend.load('https://js.dump.academy/code-and-magick/data', onLoad, onError);
+  window.backend.load(onLoad, window.backend.errorHandler);
 
 })();
