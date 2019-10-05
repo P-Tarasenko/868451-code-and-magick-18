@@ -120,7 +120,7 @@
   };
 
   form.addEventListener('submit', function (evt) {
-    window.backend.save(new FormData(form), successHandler, window.backend.errorHandler);
+    window.backend.save(new FormData(form), successHandler, window.util.errorHandler);
     evt.preventDefault();
   });
 

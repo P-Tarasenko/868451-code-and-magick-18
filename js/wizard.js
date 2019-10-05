@@ -46,6 +46,6 @@
 
   window.dialog.activateWizards();
 
-  window.backend.load(onLoad, window.backend.errorHandler);
+  window.backend.load(onLoad, window.util.errorHandler);
 
 })();
