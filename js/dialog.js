@@ -3,6 +3,7 @@
 (function () {
 
   var setupDialogElement = document.querySelector('.setup');
+  var form = setupDialogElement.querySelector('.setup-wizard-form');
   var userNameElement = setupDialogElement.querySelector('.setup-user-name');
   var openSetupDialogElement = document.querySelector('.setup-open');
   var closeSetupDialogElement = document.querySelector('.setup-close');
@@ -103,6 +104,24 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
+  });
+
+  var successHandler = function () {
+    setupDialogElement.classList.add('hidden');
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: green;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
+
+    node.textContent = 'Вы успешно отправили данные';
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
+  form.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(form), successHandler, window.util.errorHandler);
+    evt.preventDefault();
   });
 
   window.dialog = {
