@@ -64,29 +64,22 @@
     return wizardElement;
   };
 
-  var lastTimeout;
+  var onWizardElementChange = window.util.debounce(function () {
+    updateWizards();
+  });
+
   wizardCoatElement.addEventListener('click', function () {
     var color = getRandomItem(COAT_COLORS);
     wizardCoatElement.style.fill = color;
     coatColor = color;
-    if (lastTimeout) {
-      window.clearTimeout(lastTimeout);
-    }
-    lastTimeout = window.setTimeout(function () {
-      updateWizards();
-    }, 500);
+    onWizardElementChange();
   });
 
   wizardEyesElement.addEventListener('click', function () {
     var color = getRandomItem(EYES_COLORS);
     wizardEyesElement.style.fill = color;
     eyesColor = color;
-    if (lastTimeout) {
-      window.clearTimeout(lastTimeout);
-    }
-    lastTimeout = window.setTimeout(function () {
-      updateWizards();
-    }, 500);
+    onWizardElementChange();
   });
 
   wizardFireballElement.addEventListener('click', function () {
