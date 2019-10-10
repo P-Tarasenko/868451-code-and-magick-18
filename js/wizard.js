@@ -64,18 +64,29 @@
     return wizardElement;
   };
 
+  var lastTimeout;
   wizardCoatElement.addEventListener('click', function () {
     var color = getRandomItem(COAT_COLORS);
     wizardCoatElement.style.fill = color;
     coatColor = color;
-    updateWizards();
+    if (lastTimeout) {
+      window.clearTimeout(lastTimeout);
+    }
+    lastTimeout = window.setTimeout(function () {
+      updateWizards();
+    }, 500);
   });
 
   wizardEyesElement.addEventListener('click', function () {
     var color = getRandomItem(EYES_COLORS);
     wizardEyesElement.style.fill = color;
     eyesColor = color;
-    updateWizards();
+    if (lastTimeout) {
+      window.clearTimeout(lastTimeout);
+    }
+    lastTimeout = window.setTimeout(function () {
+      updateWizards();
+    }, 500);
   });
 
   wizardFireballElement.addEventListener('click', function () {
