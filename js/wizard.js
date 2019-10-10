@@ -22,14 +22,12 @@
 
   var getRank = function (wizard) {
     var rank = 0;
-
     if (wizard.colorCoat === coatColor) {
       rank += 2;
     }
     if (wizard.colorEyes === eyesColor) {
       rank += 1;
     }
-
     return rank;
   };
 
@@ -68,21 +66,21 @@
 
   wizardCoatElement.addEventListener('click', function () {
     var color = getRandomItem(COAT_COLORS);
-    this.style.fill = color;
+    wizardCoatElement.style.fill = color;
     coatColor = color;
     updateWizards();
   });
 
   wizardEyesElement.addEventListener('click', function () {
     var color = getRandomItem(EYES_COLORS);
-    this.style.fill = color;
+    wizardEyesElement.style.fill = color;
     eyesColor = color;
     updateWizards();
   });
 
   wizardFireballElement.addEventListener('click', function () {
     var color = getRandomItem(FIREBALL_COLORS);
-    this.style.backgroundColor = color;
+    wizardFireballElement.style.backgroundColor = color;
   });
 
   window.dialog.activateWizards();
